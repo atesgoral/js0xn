@@ -9,14 +9,22 @@ function encode(val) {
     for (let p in val) {
       val[p] = encode(val[p]);
     }
+  } else if (typeof val === 'string') {
+    if (val[0] === '0' && val[1] === 'x') {
+      return '0xx' + val.slice(2);
+    }
   }
 
   return val;
 }
 
 function decode(val) {
-  if (typeof val === 'string' && val[0] === '0' && val[1] == 'x') {
-    return Buffer.from(val.slice(2), 'hex');
+  if (typeof val === 'string' && val[0] === '0' && val[1] === 'x') {
+    if (val[2] !== 'x') {
+      return Buffer.from(val.slice(2), 'hex');
+    } else {
+      return '0x' + val.slice(3);
+    }
   } else if (val instanceof Array) {
     for (let i = 0; i < val.length; i++) {
       val[i] = decode(val[i]);

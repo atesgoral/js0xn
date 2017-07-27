@@ -2,8 +2,6 @@
 
 A Buffer encoding/decoding scheme for JSON.
 
-## Why
-
 ## Installation
 
 ```
@@ -42,7 +40,7 @@ js0xn.stringify({ a: 1, b: 'foo', c: true }) // '{"a":1,"b":"foo","c":true}'
 
 #### Buffer instances
 
-Buffers are encoded as hex strings prefixed with "0x":
+Buffer instances are encoded as hex strings prefixed with "0x":
 
 ```
 js0xn.stringify(Buffer.from([ 0x00, 0xc3, 0xff ])) // '"0x00c3ff"'

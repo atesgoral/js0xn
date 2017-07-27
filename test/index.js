@@ -79,7 +79,7 @@ test('decode primitive: regular string', (t) => {
   t.is(js0xn.decode('hello'), 'hello');
 });
 
-test('decode primitive: string prefixed by 0x', (t) => {
+test('decode primitive: string prefixed by 0xx', (t) => {
   t.is(js0xn.decode('0xx1234'), '0x1234');
 });
 
@@ -163,5 +163,49 @@ test('stringify nested', (t) => {
       c: [ { d: true, e: null } ]
     }),
     '{"a":1,"b":["0xxee11","0xff00"],"c":[{"d":true,"e":null}]}'
+  );
+});
+
+test('parse primitive: null', (t) => {
+  t.is(js0xn.parse('null'), null);
+});
+
+test('parse primitive: number', (t) => {
+  t.is(js0xn.parse('42'), 42);
+});
+
+test('parse primitive: Boolean', (t) => {
+  t.is(js0xn.parse('true'), true);
+  t.is(js0xn.parse('false'), false);
+});
+
+test('parse primitive: regular string', (t) => {
+  t.is(js0xn.parse('"hello"'), 'hello');
+});
+
+test('parse primitive: string prefixed by 0xx', (t) => {
+  t.is(js0xn.parse('"0xx1234"'), '0x1234');
+});
+
+test('parse object', (t) => {
+  t.deepEqual(js0xn.parse('{"a":1}'), { a: 1 });
+});
+
+test('parse array', (t) => {
+  t.deepEqual(js0xn.parse('[1,2]'), [ 1, 2 ]);
+});
+
+test('parse buffer', (t) => {
+  t.deepEqual(js0xn.parse('"0xff00"'), Buffer.from([ 255, 0 ]));
+});
+
+test('parse nested', (t) => {
+  t.deepEqual(
+    js0xn.parse('{"a":1,"b":["0xxee11","0xff00"],"c":[{"d":true,"e":null}]}'),
+    {
+      a: 1,
+      b: [ '0xee11', Buffer.from([ 255, 0 ]) ],
+      c: [ { d: true, e: null } ]
+    }
   );
 });

@@ -2,13 +2,15 @@ function encode(val) {
   if (val instanceof Buffer) {
     return '0x' + val.toString('hex');
   } else if (val instanceof Array) {
-    for (let i = 0; i < val.length; i++) {
-      val[i] = encode(val[i]);
-    }
-  } else if (typeof val === 'object') {
-    for (let p in val) {
-      val[p] = encode(val[p]);
-    }
+    return val.map(encode);
+  } else if (typeof val === 'object' && val !== null) {
+    return Object.keys(val).reduce(
+      (obj, key) => {
+        obj[key] = encode(val[key]);
+        return obj;
+      },
+      {}
+    );
   } else if (typeof val === 'string') {
     if (val[0] === '0' && val[1] === 'x') {
       return '0xx' + val.slice(2);

@@ -28,7 +28,10 @@ test('encode primitive: string prefixed by 0x', (t) => {
 });
 
 test('encode object', (t) => {
-  t.deepEqual(js0xn.encode({ a: 1 }), { a: 1 });
+  const orig = { a: 1 };
+  const encoded = js0xn.encode(orig);
+  t.deepEqual(encoded, { a: 1 });
+  t.not(encoded, orig, 'Should return new object instance');
 });
 
 test('encode object with undefined property', (t) => {
@@ -36,7 +39,10 @@ test('encode object with undefined property', (t) => {
 });
 
 test('encode array', (t) => {
-  t.deepEqual(js0xn.encode([ 1, 2 ]), [ 1, 2 ]);
+  const orig = [ 1, 2 ];
+  const encoded = js0xn.encode(orig);
+  t.deepEqual(encoded, [ 1, 2 ]);
+  t.not(encoded, orig, 'Should return new array instance');
 });
 
 test('encode array with undefined element', (t) => {

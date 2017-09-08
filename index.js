@@ -40,12 +40,12 @@ function decode(val) {
   return val;
 }
 
-function stringify(v) {
-  return JSON.stringify(encode(v));
+function stringify(v, replacer, space) {
+  return JSON.stringify(encode(v), replacer, space);
 }
 
-function parse(v) {
-  return decode(JSON.parse(v));
+function parse(v, reviver) {
+  return decode(JSON.parse(v), reviver);
 }
 
 module.exports = Object.freeze({

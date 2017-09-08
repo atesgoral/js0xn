@@ -14,12 +14,6 @@ Regular strings are untouched, except getting escaped when they already start wi
 ## Installation
 
 ```
-yarn add js0xn
-```
-
-Or:
-
-```
 npm install --save js0xn
 ```
 

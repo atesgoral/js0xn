@@ -172,6 +172,13 @@ test('stringify nested', (t) => {
   );
 });
 
+test('stringify with replacer and space', (t) => {
+  t.is(
+    js0xn.stringify({ a: 1 }, (k, v) => k ? v + 1 : v, 2),
+    '{\n  "a": 2\n}'
+  );
+});
+
 test('parse primitive: null', (t) => {
   t.is(js0xn.parse('null'), null);
 });
@@ -213,5 +220,12 @@ test('parse nested', (t) => {
       b: [ '0xee11', Buffer.from([ 255, 0 ]) ],
       c: [ { d: true, e: null } ]
     }
+  );
+});
+
+test('parse with reviver', (t) => {
+  t.deepEqual(
+    js0xn.parse('{\n  "a": 2\n}', (k, v) => k ? v - 1 : v),
+    { a: 1 }
   );
 });

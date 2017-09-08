@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "coverage": "nyc ava && nyc report --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/atesgoral/js0xn#readme",
   "devDependencies": {
-    "ava": "^0.21.0"
+    "ava": "^0.21.0",
+    "nyc": "^11.2.1"
   }
 }

@@ -45,7 +45,7 @@ function stringify(v, replacer, space) {
 }
 
 function parse(v, reviver) {
-  return decode(JSON.parse(v), reviver);
+  return decode(JSON.parse(v, reviver));
 }
 
 module.exports = Object.freeze({

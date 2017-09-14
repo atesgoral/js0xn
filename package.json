@@ -23,6 +23,7 @@
   "homepage": "https://github.com/atesgoral/js0xn#readme",
   "devDependencies": {
     "ava": "^0.21.0",
+    "coveralls": "^2.13.1",
     "nyc": "^11.2.1"
   }
 }

@@ -1,3 +1,7 @@
+[![Travis CI](https://img.shields.io/travis/atesgoral/js0xn.svg)](https://travis-ci.org/atesgoral/js0xn)
+[![Coverage Status](https://img.shields.io/coveralls/atesgoral/js0xn.svg)](https://coveralls.io/github/atesgoral/js0xn?branch=master)
+[![NPM Package](https://img.shields.io/npm/v/js0xn.svg)](https://www.npmjs.com/package/js0xn)
+
 # js0xn
 
 A Buffer encoding/decoding scheme for JSON with the aim of:
